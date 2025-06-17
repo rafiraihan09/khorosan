@@ -1,0 +1,529 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Overspray Font */
+@import url('https://fonts.cdnfonts.com/css/overspray');
+
+@layer base {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 3.9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --radius: 0rem;
+  }
+  
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-black text-white;
+    font-family: var(--font-orbitron), monospace;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  
+  /* OVERSPRAY FONT - REAL FONT IMPLEMENTATION */
+  h1, h2, h3, h4, h5, h6, .overspray-title {
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400; /* Overspray font works best with normal weight */
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 
+      3px 3px 0px rgba(0, 0, 0, 1),
+      -1px -1px 0px rgba(0, 0, 0, 1),
+      1px -1px 0px rgba(0, 0, 0, 1),
+      -1px 1px 0px rgba(0, 0, 0, 1),
+      4px 4px 0px rgba(0, 0, 0, 0.8),
+      0px 0px 10px rgba(255, 255, 255, 0.2);
+    line-height: 0.9;
+    position: relative;
+    display: inline-block;
+    font-style: normal;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Enhanced stencil effect for larger headings */
+  h1, .overspray-title-large {
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-shadow: 
+      4px 4px 0px rgba(0, 0, 0, 1),
+      -2px -2px 0px rgba(0, 0, 0, 1),
+      2px -2px 0px rgba(0, 0, 0, 1),
+      -2px 2px 0px rgba(0, 0, 0, 1),
+      6px 6px 0px rgba(0, 0, 0, 0.6),
+      0px 0px 15px rgba(255, 255, 255, 0.3);
+    @apply text-4xl lg:text-6xl;
+    -webkit-text-stroke: 2px rgba(0, 0, 0, 0.7);
+  }
+  
+  h2 {
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    @apply text-3xl lg:text-4xl;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.6);
+  }
+  
+  h3 {
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    @apply text-2xl lg:text-3xl;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Body text with subtle OVERSPRAY characteristics */
+  p, span, div, a, button, input, textarea, label {
+    font-family: var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+  }
+
+  /* Buttons with OVERSPRAY styling */
+  button, .btn-primary, .btn-secondary {
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* Form elements */
+  input, textarea, select {
+    font-family: var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  /* Navigation with OVERSPRAY styling */
+  nav, .nav-item {
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .product-card {
+    background: linear-gradient(135deg, #000000 0%, #333333 50%, #ffffff 100%);
+    border: 1px solid #666666;
+    transition: all 0.3s ease;
+  }
+  
+  .product-card:hover {
+    border-color: #ffffff;
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+  }
+  
+  .btn-primary {
+    @apply bg-white text-black hover:bg-gray-200 px-8 py-3 font-medium transition-colors duration-200;
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  
+  .btn-secondary {
+    @apply bg-black text-white border border-white hover:bg-white hover:text-black px-8 py-3 font-medium transition-colors duration-200;
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* OVERSPRAY Font for ALL Titles and Headers - REAL FONT IMPLEMENTATION */
+  .overspray-title {
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 
+      3px 3px 0px rgba(0, 0, 0, 1),
+      -1px -1px 0px rgba(0, 0, 0, 1),
+      1px -1px 0px rgba(0, 0, 0, 1),
+      -1px 1px 0px rgba(0, 0, 0, 1),
+      4px 4px 0px rgba(0, 0, 0, 0.8),
+      0px 0px 10px rgba(255, 255, 255, 0.2);
+    position: relative;
+    display: inline-block;
+    font-style: normal;
+    line-height: 0.9;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.5);
+  }
+
+  /* KHOROSAN Logo Styling - Enhanced with Real Overspray Font */
+  .khorosan-logo {
+    position: relative;
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    display: inline-block;
+    z-index: 10;
+    text-shadow: 
+      2px 2px 0px rgba(0, 0, 0, 1),
+      -1px -1px 0px rgba(0, 0, 0, 1),
+      1px -1px 0px rgba(0, 0, 0, 1),
+      -1px 1px 0px rgba(0, 0, 0, 1),
+      0px 0px 8px rgba(255, 255, 255, 0.2);
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Apply OVERSPRAY styling to text elements */
+  .overspray-text {
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Special class for extra large OVERSPRAY text - MEGA STENCIL */
+  .overspray-mega {
+    font-family: 'Overspray', var(--font-orbitron), monospace;
+    font-weight: 400;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 
+      6px 6px 0px rgba(0, 0, 0, 1),
+      -3px -3px 0px rgba(0, 0, 0, 1),
+      3px -3px 0px rgba(0, 0, 0, 1),
+      -3px 3px 0px rgba(0, 0, 0, 1),
+      8px 8px 0px rgba(0, 0, 0, 0.6),
+      0px 0px 20px rgba(255, 255, 255, 0.4);
+    line-height: 0.8;
+    -webkit-text-stroke: 3px rgba(0, 0, 0, 0.8);
+    position: relative;
+  }
+
+  /* Add stencil cut-out effect */
+  .overspray-mega::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Scanlines effect */
+  .scanlines {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scanlines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 50%,
+      rgba(0, 255, 0, 0.03) 50%
+    );
+    background-size: 100% 4px;
+    animation: scanlines 0.1s linear infinite;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* Glitch bars */
+  .glitch-bars {
+    position: relative;
+  }
+
+  .glitch-bars::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 2%,
+      transparent 4%,
+      transparent 96%,
+      rgba(255, 255, 255, 0.1) 98%,
+      transparent 100%
+    );
+    animation: glitch-bars 1.5s ease-in-out infinite;
+    z-index: 3;
+  }
+
+  /* Static noise overlay */
+  .static-noise {
+    position: relative;
+  }
+
+  .static-noise::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+    animation: static-noise 0.2s infinite;
+    pointer-events: none;
+    z-index: 4;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes scanlines {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes glitch-bars {
+  0%, 100% {
+    transform: translateX(0) scaleX(1);
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(-10px) scaleX(1.1);
+    opacity: 0.8;
+  }
+  20% {
+    transform: translateX(10px) scaleX(0.9);
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(-5px) scaleX(1.05);
+    opacity: 0.6;
+  }
+  40% {
+    transform: translateX(8px) scaleX(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-12px) scaleX(1.08);
+    opacity: 0.9;
+  }
+  60% {
+    transform: translateX(6px) scaleX(0.92);
+    opacity: 0;
+  }
+  70% {
+    transform: translateX(-8px) scaleX(1.03);
+    opacity: 0.7;
+  }
+  80% {
+    transform: translateX(15px) scaleX(0.88);
+    opacity: 0;
+  }
+  90% {
+    transform: translateX(-3px) scaleX(1.02);
+    opacity: 0.5;
+  }
+}
+
+@keyframes static-noise {
+  0%, 100% {
+    opacity: 0.02;
+  }
+  50% {
+    opacity: 0.05;
+  }
+}
+
+@keyframes grid-move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+@keyframes glitch-overlay {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(-100%);
+    opacity: 0.1;
+  }
+  20% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(-50%);
+    opacity: 0.15;
+  }
+  40% {
+    transform: translateX(75%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-25%);
+    opacity: 0.08;
+  }
+  60% {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  70% {
+    transform: translateX(-75%);
+    opacity: 0.12;
+  }
+  80% {
+    transform: translateX(25%);
+    opacity: 0;
+  }
+  90% {
+    transform: translateX(-10%);
+    opacity: 0.05;
+  }
+}
+
+/* Pulse effect for buttons */
+.btn-primary:hover {
+  animation: pulse-glow 0.5s ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Glitch effect for the underline */
+.glitch-underline {
+  position: relative;
+  overflow: hidden;
+}
+
+.glitch-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ff0000 25%,
+    #00ffff 50%,
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  animation: glitch-underline 2s ease-in-out infinite;
+}
+
+@keyframes glitch-underline {
+  0%, 90%, 100% {
+    transform: translateX(0) scaleX(1);
+    opacity: 1;
+  }
+  10% {
+    transform: translateX(-10px) scaleX(1.1);
+    opacity: 0.8;
+  }
+  20% {
+    transform: translateX(15px) scaleX(0.9);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(-5px) scaleX(1.05);
+    opacity: 0.9;
+  }
+  40% {
+    transform: translateX(8px) scaleX(0.95);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-12px) scaleX(1.08);
+    opacity: 0.7;
+  }
+  60% {
+    transform: translateX(6px) scaleX(0.92);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-8px) scaleX(1.03);
+    opacity: 0.85;
+  }
+  80% {
+    transform: translateX(10px) scaleX(0.97);
+    opacity: 1;
+  }
+}
