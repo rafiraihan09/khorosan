@@ -155,7 +155,8 @@ export default function CheckoutPage() {
       await clearCart(user.id);
       await refreshCart();
       
-      router.push(`/order-confirmation/${order.order_number}`);
+      // Redirect to order confirmation with order number as query parameter
+      router.push(`/order-confirmation?order=${order.order_number}`);
     } catch (error) {
       console.error('Error creating order:', error);
       alert('Failed to process order. Please try again.');
