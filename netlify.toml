@@ -1,7 +1,7 @@
 # Netlify configuration for Khorosan Clothing Store
 [build]
   publish = "out"
-  command = "npm run build"
+  command = "npm run build && npm run export"
 
 [build.environment]
   NODE_VERSION = "18"
