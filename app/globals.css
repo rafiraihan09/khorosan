@@ -175,8 +175,9 @@
     box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
   }
   
+  /* Updated button styles with blue accent */
   .btn-primary {
-    @apply bg-white text-black hover:bg-gray-200 px-8 py-3 font-medium transition-colors duration-200;
+    @apply bg-blue-600 text-white hover:bg-blue-700 px-8 py-3 font-medium transition-colors duration-200;
     font-family: 'Overspray', var(--font-orbitron), monospace;
     font-weight: 400;
     letter-spacing: 0.15em;
@@ -184,7 +185,7 @@
   }
   
   .btn-secondary {
-    @apply bg-black text-white border border-white hover:bg-white hover:text-black px-8 py-3 font-medium transition-colors duration-200;
+    @apply bg-black text-white border border-blue-600 hover:bg-blue-600 hover:text-white px-8 py-3 font-medium transition-colors duration-200;
     font-family: 'Overspray', var(--font-orbitron), monospace;
     font-weight: 400;
     letter-spacing: 0.15em;
@@ -268,6 +269,15 @@
     background: rgba(0, 0, 0, 0.3);
     z-index: 1;
     pointer-events: none;
+  }
+
+  /* Palestine support message styling */
+  .palestine-support {
+    background: linear-gradient(135deg, #000000 0%, #1e3a8a 50%, #000000 100%);
+    border: 2px solid #2563eb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
   }
 
   /* Scanlines effect */
@@ -458,10 +468,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
   }
   50% {
-    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px 5px rgba(37, 99, 235, 0.2);
   }
 }
 
@@ -481,7 +491,7 @@
   background: linear-gradient(
     90deg,
     #ffffff 0%,
-    #ff0000 25%,
+    #2563eb 25%,
     #00ffff 50%,
     #ffffff 75%,
     #ffffff 100%

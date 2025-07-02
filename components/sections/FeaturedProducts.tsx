@@ -46,14 +46,16 @@ const FeaturedProducts = () => {
         <div className="w-full flex justify-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl w-full">
             {products.map((product) => (
-              <Link
+              <div
                 key={product.id}
-                href={`/product/${product.id}`}
-                className="product-card group cursor-pointer relative"
+                className="group relative overflow-hidden border border-gray-700 hover:border-white transition-all duration-300"
+                style={{
+                  background: 'linear-gradient(135deg, #000000 0%, #333333 50%, #ffffff 100%)'
+                }}
               >
                 {/* Out of Stock Overlay */}
                 {!product.inStock && (
-                  <div className="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center z-10 rounded-lg">
+                  <div className="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center z-10">
                     <div className="text-center">
                       <Badge className="bg-red-600 text-white mb-2">Out of Stock</Badge>
                       <p className="text-white text-sm">Currently Unavailable</p>
@@ -61,44 +63,52 @@ const FeaturedProducts = () => {
                   </div>
                 )}
 
-                <div className="aspect-w-1 aspect-h-1 relative h-80 overflow-hidden">
+                <div className="aspect-w-16 aspect-h-12 relative h-64">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
-                      product.inStock ? 'grayscale group-hover:grayscale-0' : 'grayscale opacity-50'
+                    className={`w-full h-full object-cover transition-all duration-500 ${
+                      product.inStock 
+                        ? 'grayscale group-hover:grayscale-0' 
+                        : 'grayscale opacity-50'
                     }`}
                   />
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300" />
                 </div>
                 
-                <div className="p-6">
-                  <div className="text-sm text-gray-400 mb-2">
-                    {product.category}
+                <div 
+                  className="p-8"
+                  style={{
+                    background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #ffffff 100%)'
+                  }}
+                >
+                  <div className="flex items-center mb-4">
+                    <div className="text-sm text-gray-400 uppercase tracking-wide mr-3">
+                      {product.category}
+                    </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-gray-300 transition-colors">
+                  
+                  <h3 className="overspray-title text-2xl  text-white mb-4">
                     {product.name}
                   </h3>
-                  <p className="text-sm text-gray-300 mb-4">
+                  
+                  <p className="text-gray-300 mb-4 leading-relaxed">
                     {product.description}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-white">
+
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="overspray-title text-2xl text-white">
                       ${product.price}
                     </span>
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="opacity-0 group-hover:opacity-100 transition-opacity border-white text-white hover:bg-white hover:text-black"
-                      onClick={(e) => {
-                        e.preventDefault(); // Prevent the Link navigation
-                        window.location.href = `/product/${product.id}`;
-                      }}
-                    >
+                  </div>
+                  
+                  <Link href={`/product/${product.id}`}>
+                    <Button variant="outline" className="btn-secondary w-full overspray-title">
                       View Details
                     </Button>
-                  </div>
+                  </Link>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>

@@ -16,7 +16,7 @@ const CategoryShowcase = () => {
       description: 'Tactical precision meets modern style',
       icon: Target,
       href: '/category/artillery-range',
-      image: 'https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      image: 'arabic.jpg'
     },
     {
       name: 'Urban Wear',
@@ -31,10 +31,10 @@ const CategoryShowcase = () => {
     <section className="py-24 bg-black w-screen overflow-x-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="overspray-title text-white text-4xl lg:text-6xl mb-4">
+          <h2 className="overspray-title text-white text-8xl lg:text-8xl mb-4">
             OUR COLLECTIONS
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-8xl mx-auto">
             Three distinct lines designed for different adventures and lifestyles
           </p>
         </div>
@@ -68,12 +68,12 @@ const CategoryShowcase = () => {
                   >
                     <div className="flex items-center mb-4">
                       <IconComponent className="h-8 w-8 text-white mr-3" />
-                      <h3 className="text-2xl font-bold text-white">
+                      <h3 className="text-2xl text-white">
                         {category.name}
                       </h3>
                     </div>
                     
-                    <p className="text-gray-300 mb-6 leading-relaxed">
+                    <p className="text-white-300 mb-6 leading-relaxed">
                       {category.description}
                     </p>
                     
