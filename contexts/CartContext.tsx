@@ -67,12 +67,53 @@
 
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useAuth } from './AuthContext';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-const CartContext = createContext();
+// TypeScript interfaces
+interface CartItem {
+  id: string;
+  product_id: string;
+  product_name: string;
+  product_price: number;
+  product_image: string;
+  product_category?: string;
+  size: string;
+  color: string;
+  quantity: number;
+  added_at: string;
+}
 
-export const useCart = () => {
+interface Cart {
+  items: CartItem[];
+  totalItems: number;
+  totalPrice: number;
+}
+
+interface AddToCartItem {
+  product_id: string;
+  product_name: string;
+  product_price: number;
+  product_image: string;
+  product_category?: string;
+  size: string;
+  color: string;
+  quantity: number;
+}
+
+interface CartContextType {
+  cart: Cart;
+  addToCart: (item: AddToCartItem) => Promise<boolean>;
+  updateCartItemQuantity: (itemId: string, newQuantity: number) => Promise<boolean>;
+  removeFromCart: (itemId: string) => Promise<boolean>;
+  clearCart: () => Promise<boolean>;
+  refreshCart: () => Promise<boolean>;
+  getCartItemCount: () => number;
+  getCartTotal: () => number;
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
+export const useCart = (): CartContextType => {
   const context = useContext(CartContext);
   if (!context) {
     throw new Error('useCart must be used within a CartProvider');
@@ -80,9 +121,12 @@ export const useCart = () => {
   return context;
 };
 
-export const CartProvider = ({ children }) => {
-  const { user } = useAuth();
-  const [cart, setCart] = useState({
+interface CartProviderProps {
+  children: ReactNode;
+}
+
+export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
+  const [cart, setCart] = useState<Cart>({
     items: [],
     totalItems: 0,
     totalPrice: 0
@@ -91,14 +135,14 @@ export const CartProvider = ({ children }) => {
   // Load cart from localStorage on component mount
   useEffect(() => {
     loadCartFromStorage();
-  }, [user]);
+  }, []);
 
   const loadCartFromStorage = () => {
     try {
       if (typeof window !== 'undefined') {
-        const savedCart = localStorage.getItem(`cart_${user?.id || 'guest'}`);
+        const savedCart = localStorage.getItem('cart_guest');
         if (savedCart) {
-          const cartData = JSON.parse(savedCart);
+          const cartData: Cart = JSON.parse(savedCart);
           setCart(cartData);
         }
       }
@@ -107,23 +151,23 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const saveCartToStorage = (cartData) => {
+  const saveCartToStorage = (cartData: Cart) => {
     try {
       if (typeof window !== 'undefined') {
-        localStorage.setItem(`cart_${user?.id || 'guest'}`, JSON.stringify(cartData));
+        localStorage.setItem('cart_guest', JSON.stringify(cartData));
       }
     } catch (error) {
       console.error('Error saving cart to storage:', error);
     }
   };
 
-  const calculateCartTotals = (items) => {
+  const calculateCartTotals = (items: CartItem[]) => {
     const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
     const totalPrice = items.reduce((sum, item) => sum + (item.product_price * item.quantity), 0);
     return { totalItems, totalPrice };
   };
 
-  const addToCart = async (item) => {
+  const addToCart = async (item: AddToCartItem): Promise<boolean> => {
     try {
       console.log('Adding item to cart:', item);
 
@@ -133,7 +177,7 @@ export const CartProvider = ({ children }) => {
       }
 
       // Generate unique ID for cart item
-      const cartItem = {
+      const cartItem: CartItem = {
         id: `${item.product_id}_${item.size}_${item.color}_${Date.now()}`,
         product_id: item.product_id,
         product_name: item.product_name,
@@ -149,13 +193,13 @@ export const CartProvider = ({ children }) => {
       setCart(prevCart => {
         // Check if same product with same size/color already exists
         const existingItemIndex = prevCart.items.findIndex(
-          cartItem => 
-            cartItem.product_id === item.product_id &&
-            cartItem.size === item.size &&
-            cartItem.color === item.color
+          existingItem => 
+            existingItem.product_id === item.product_id &&
+            existingItem.size === item.size &&
+            existingItem.color === item.color
         );
 
-        let newItems;
+        let newItems: CartItem[];
         if (existingItemIndex >= 0) {
           // Update quantity if item already exists
           newItems = [...prevCart.items];
@@ -166,7 +210,7 @@ export const CartProvider = ({ children }) => {
         }
 
         const { totalItems, totalPrice } = calculateCartTotals(newItems);
-        const newCart = {
+        const newCart: Cart = {
           items: newItems,
           totalItems,
           totalPrice
@@ -182,11 +226,11 @@ export const CartProvider = ({ children }) => {
       return true;
     } catch (error) {
       console.error('Error adding to cart:', error);
-      throw new Error(`Failed to add product to cart: ${error.message}`);
+      throw new Error(`Failed to add product to cart: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   };
 
-  const updateCartItemQuantity = async (itemId, newQuantity) => {
+  const updateCartItemQuantity = async (itemId: string, newQuantity: number): Promise<boolean> => {
     try {
       if (newQuantity < 1) {
         return await removeFromCart(itemId);
@@ -198,7 +242,7 @@ export const CartProvider = ({ children }) => {
         );
 
         const { totalItems, totalPrice } = calculateCartTotals(newItems);
-        const newCart = {
+        const newCart: Cart = {
           items: newItems,
           totalItems,
           totalPrice
@@ -215,12 +259,12 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const removeFromCart = async (itemId) => {
+  const removeFromCart = async (itemId: string): Promise<boolean> => {
     try {
       setCart(prevCart => {
         const newItems = prevCart.items.filter(item => item.id !== itemId);
         const { totalItems, totalPrice } = calculateCartTotals(newItems);
-        const newCart = {
+        const newCart: Cart = {
           items: newItems,
           totalItems,
           totalPrice
@@ -237,9 +281,9 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const clearCart = async () => {
+  const clearCart = async (): Promise<boolean> => {
     try {
-      const emptyCart = {
+      const emptyCart: Cart = {
         items: [],
         totalItems: 0,
         totalPrice: 0
@@ -248,7 +292,7 @@ export const CartProvider = ({ children }) => {
       setCart(emptyCart);
       
       if (typeof window !== 'undefined') {
-        localStorage.removeItem(`cart_${user?.id || 'guest'}`);
+        localStorage.removeItem('cart_guest');
       }
 
       return true;
@@ -258,11 +302,11 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const refreshCart = async () => {
+  const refreshCart = async (): Promise<boolean> => {
     try {
       // Recalculate totals based on current items
       const { totalItems, totalPrice } = calculateCartTotals(cart.items);
-      const updatedCart = {
+      const updatedCart: Cart = {
         ...cart,
         totalItems,
         totalPrice
@@ -277,15 +321,15 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const getCartItemCount = () => {
+  const getCartItemCount = (): number => {
     return cart.totalItems;
   };
 
-  const getCartTotal = () => {
+  const getCartTotal = (): number => {
     return cart.totalPrice;
   };
 
-  const value = {
+  const value: CartContextType = {
     cart,
     addToCart,
     updateCartItemQuantity,
