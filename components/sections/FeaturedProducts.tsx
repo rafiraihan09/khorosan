@@ -35,11 +35,11 @@ const FeaturedProducts = () => {
     <section className="py-24 bg-black w-screen overflow-x-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="overspray-title text-white text-4xl lg:text-6xl mb-4">
-            FEATURED PRODUCTS
+          <h2 className="overspray-title text-white text-8xl lg:text-8xl mb-4">
+            PRE-ORDER
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Handpicked essentials from our latest collections
+            These high quality products are made to order
           </p>
         </div>
 
