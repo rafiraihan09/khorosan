@@ -29,7 +29,7 @@ const Footer = () => {
 
           {/* Categories */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Collections</h4>
+            <h4 className="text-lg text-white">Collections</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/category/mountain-range" className="text-gray-300 hover:text-white transition-colors text-sm">
@@ -51,7 +51,7 @@ const Footer = () => {
 
           {/* Company */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Company</h4>
+            <h4 className="text-lg text-white">Company</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/about" className="text-gray-300 hover:text-white transition-colors text-sm">
@@ -78,7 +78,7 @@ const Footer = () => {
 
           {/* Support */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Support</h4>
+            <h4 className="text-lg text-white">Support</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/faq" className="text-gray-300 hover:text-white transition-colors text-sm">

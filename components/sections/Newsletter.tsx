@@ -30,7 +30,7 @@ const Newsletter = () => {
 
           {isSubscribed ? (
             <div className="bg-white text-black p-3 rounded text-center max-w-sm mx-auto">
-              <p className="font-semibold">Thank you for subscribing!</p>
+              <p className="">Thank you for subscribing!</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">

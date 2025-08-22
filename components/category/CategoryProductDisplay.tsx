@@ -112,7 +112,7 @@ export default function CategoryProductDisplay({ categoryName }: CategoryProduct
               
               <div className="p-6 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-gray-300 transition-colors">
+                  <h3 className="text-xl text-white mb-3 group-hover:text-gray-300 transition-colors">
                     {product.name}
                   </h3>
                   <p className="text-sm text-gray-300 mb-4 leading-relaxed">

@@ -217,10 +217,10 @@ export default function ShopPage() {
                   <Badge variant="outline" className="border-gray-600 text-gray-300 mb-3 text-xs">
                     {product.category}
                   </Badge>
-                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-gray-300 transition-colors">
+                  <h3 className="text-xl text-white mb-3 group-hover:text-gray-300 transition-colors">
                     {product.name}
                   </h3>
-                  <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+                  <p className="text-sm text-white mb-4 leading-relaxed">
                     {product.description}
                   </p>
                 </div>
